@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, Date, String, ForeignKey
+from sqlalchemy.orm import relationship
 from app.database import Base
 
 
@@ -8,6 +9,7 @@ class Orders(Base):
     id = Column(Integer, primary_key=True)
     date = Column(Date)
     status = Column(String)
+    items = relationship("OrderItem", backref="order")
 
 
 class OrderItem(Base):

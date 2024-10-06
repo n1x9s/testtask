@@ -9,17 +9,14 @@ class Status(str, Enum):
 
 
 class SOrders(BaseModel):
-    id: int
     date: date
     status: Status
-    items: list['SOrderItem'] 
 
     class Config:
         from_attributes = True
 
 
 class SOrderItem(BaseModel):
-    id: int
     order_id: int
     product_id: int
     quantity: int

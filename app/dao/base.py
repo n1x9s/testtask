@@ -12,7 +12,7 @@ class BaseDao:
         async with async_session() as session:
             query = select(cls.model)
             result = await session.execute(query)
-            return result.mappings().all()
+            return result.scalars().all()
 
     @classmethod
     async def get(cls, model_id):

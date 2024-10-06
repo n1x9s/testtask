@@ -16,7 +16,8 @@ async def create_product(product: SProduct):
 
 @router.get("", response_model=List[SProduct])  # Получение списка товаров (GET /products)
 async def get_all_products() -> List[SProduct]:
-    return await ProductsDao.get_all()
+    products = await ProductsDao.get_all()
+    return [SProduct.from_orm(product) for product in products]
 
 
 @router.get("/{product_id}")  # Получение информации о товаре по id (GET /products/{id})
